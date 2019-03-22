@@ -2,9 +2,17 @@ var correctScore = 0,
     incorrectScore = 0,
     countdownTimer,
     questionBank = [
-        new Question('How many NBA teams are based in California?', '4', ['1', '2', '3']),
-        new Question('Which player has the most rings?', 'Bill Russell', ['Michael Jordan', 'Robert Horry', 'Sam Jones']),
-    ]
+        new Question('How many NBA teams are based in California?', '4', ['1', '2', '3', '5']),
+        new Question('Which player has the most rings?', 'Bill Russell', ['Michael Jordan', 'Robert Horry', 'Sam Jones', 'Larry Bird']),
+        new Question('What year did the "NBA" start? (Post merge)', '1946', ['1947', '1945', '1948', '1949']),
+        new Question('Which coach has the most rings?', 'Phil Jackson', ['Red Auerbach', 'Greg Popovich', 'Pat Riley', 'Don Nelson']),
+        new Question('Who is the player in the NBA logo?', 'Jerry West', ['Michael Jordan', 'Hakeem Olajuwon', 'Magic Johnson', 'Julius Erving']),
+        new Question('How many NBA teams are based outside the United States?', '1', ['0', '2', '3','5']),
+        new Question('Which of these players has won a championship?', 'Kevin Garnett', ['Karl Malone', 'John Stockton','Reggie Miller', 'Charles Barkley']),
+        new Question("Which player has won a championship in each of the last 3 decades? (1990's, 2000's,2010's)", 'Tim Duncan', ['Kobe Bryant', "Shaquille O' Neal", 'Dwyane Wade', 'Vince Carter']),
+        new Question('What draft pick was Michael Jordan selected at', '3rd', ['1st', '2nd', '4th', '5th']),
+        new Question('What year did the Seattle Supersonics become the Oklahoma City Thunder?', '2008', ['2010', '2006', '2012', '2004'])
+    ];
 
 $(document).ready(function() {
     console.log(questionBank);
@@ -20,21 +28,19 @@ function startGame(){
     shuffle(questionBank)
     for (var i = 0; i < questionBank.length; i++) {
         var currentQuestion = questionBank[i];
-        $('.questionAsked').append(currentQuestion.question);
-        //use math random to set the correct answer position and save that to append correct answer too
-        //incorrect answers shuffle array
+        $('.questionAsked').append('<h2>'+ currentQuestion.question + '</h2>');
         var answers = currentQuestion.incorrectAnswers.slice().concat(currentQuestion.correctAnswer);
         shuffle(answers);
         console.log(answers);
         for (var j = 0; j < answers.length; j++) {
-            $('.answerOptions').append('<div class="answer">' + answers[j] + '</div>');
-            countdownTimer = setTimeout(function(){
-                $('.answer').on('click', function(){
-                    clearTimeout(countdownTimer);
-                });
-            },15000)
+            $('.answerOptions').append('<div class="answer"><h3>' + answers[j] + '</h3></div><br>');;
         }
-
+        var test = setTimeout(function(){
+            console.log("SPACEEEEEEEEEEEEEEEEEEEEEEEE")
+        },1000)
+        $('.answer').on('click', function(){
+            clearTimeout(test);
+        });
 
 
     }
